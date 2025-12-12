@@ -143,7 +143,7 @@ export function ResultModal({
                 transition={{ delay: 0.5 }}
                 className="flex gap-3"
               >
-                {success ? (
+                {success && onNextLevel ? (
                   <Button
                     onClick={onNextLevel}
                     variant="success"
@@ -152,26 +152,35 @@ export function ResultModal({
                   >
                     Next Level →
                   </Button>
+                ) : success ? (
+                   <Button
+                     onClick={onClose}
+                     variant="success"
+                     className="flex-1"
+                     size="lg"
+                   >
+                     Back to Home
+                   </Button>
                 ) : (
-                  <>
-                    <Button
-                      onClick={onRetry}
-                      variant="outline"
-                      className="flex-1"
-                      size="lg"
-                    >
-                      <RefreshCw className="w-4 h-4 mr-2" />
-                      Try Again
-                    </Button>
-                    <Button
-                      onClick={onClose}
-                      variant="secondary"
-                      className="flex-1"
-                      size="lg"
-                    >
-                      Review Code
-                    </Button>
-                  </>
+                   <>
+                     <Button
+                       onClick={onRetry}
+                       variant="outline"
+                       className="flex-1"
+                       size="lg"
+                     >
+                       <RefreshCw className="w-4 h-4 mr-2" />
+                       Try Again
+                     </Button>
+                     <Button
+                       onClick={onClose}
+                       variant="secondary"
+                       className="flex-1"
+                       size="lg"
+                     >
+                       Review Code
+                     </Button>
+                   </>
                 )}
               </motion.div>
 

@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Play, Lightbulb, RotateCcw, ChevronLeft, BookOpen } from 'lucide-react';
 import { Level } from '@/types/game';
@@ -62,6 +62,16 @@ export function GameLayout({ level, onComplete, onBack, onNextLevel, hasNextLeve
     setShowModal(false);
     onNextLevel();
   }, [onNextLevel]);
+
+  // Reset code and state when level changes
+  useEffect(() => {
+    setCode(level.starterCode);
+    setVisualState('idle');
+    setShowModal(false);
+    setValidationResult(null);
+    setIsCompleted(false);
+    setShowHint(false);
+  }, [level]);
 
   return (
     <div className="h-screen flex flex-col bg-background overflow-hidden">
